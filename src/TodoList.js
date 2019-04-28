@@ -9,6 +9,7 @@ class TodoList extends Component {
     }
   }
 
+  // faz que os itens sejam inseridos no array
   pushToItems = (event) => {
     event.preventDefault();
     this.setState({
@@ -16,7 +17,7 @@ class TodoList extends Component {
       todo: ''
     })
   }
-
+  // evento de mudança e insere os dados em todo
   onChange = (event) => {
     this.setState({ todo: event.target.value });
   }
