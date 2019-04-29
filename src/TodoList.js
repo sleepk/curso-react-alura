@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TesteEvento from './TesteEvento';
 
 class TodoList extends Component {
   constructor(props) {
@@ -22,6 +23,16 @@ class TodoList extends Component {
     this.setState({ todo: event.target.value });
   }
 
+  handler(event) {
+    alert(`
+      key: ${event.key}
+      keyCode: ${event.keyCode}
+      altKey: ${event.altKey}
+      ctrlKey: ${event.ctrlKey}
+      metaKey: ${event.metaKey}
+      shiftKey: ${event.shiftKey}
+    `)
+  }
 
   render() {
     const { items } = this.state;
@@ -35,6 +46,15 @@ class TodoList extends Component {
             <li>{item}</li>
           ))}
         </ul>
+        <input
+          placeholder='Hit a key...'
+          onKeyDown={this.handler}
+          onKeyPress={this.handler}
+          onKeyUp={this.handler}
+        />
+
+        <TesteEvento />
+
       </div>
     );
   }
