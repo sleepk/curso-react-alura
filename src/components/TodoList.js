@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TesteEvento from './TesteEvento';
+import TodoForm from './TodoForm';
 
 class TodoList extends Component {
   constructor(props) {
@@ -7,21 +7,21 @@ class TodoList extends Component {
     this.state = {
       items: [],
       todo: '',
-    }
+    };
   }
 
   // faz que os itens sejam inseridos no array
-  pushToItems = (event) => {
+  pushToItems = event => {
     event.preventDefault();
     this.setState({
       items: [...this.state.items, this.state.todo],
-      todo: ''
-    })
-  }
+      todo: '',
+    });
+  };
   // evento de mudança e insere os dados em todo
-  onChange = (event) => {
+  onChange = event => {
     this.setState({ todo: event.target.value });
-  }
+  };
 
   handler(event) {
     alert(`
@@ -31,15 +31,23 @@ class TodoList extends Component {
       ctrlKey: ${event.ctrlKey}
       metaKey: ${event.metaKey}
       shiftKey: ${event.shiftKey}
-    `)
+    `);
   }
 
   render() {
     const { items } = this.state;
     return (
       <div>
-        <input type="text" name="todo" placeholder="enter to todo here" onChange={this.onChange}></input>
-        <button type="button" onClick={this.pushToItems}>Create</button>
+        <input
+          type="text"
+          name="todo"
+          placeholder="enter to todo here"
+          onChange={this.onChange}
+        />
+        <button type="button" onClick={this.pushToItems}>
+          Create
+        </button>
+        <TodoForm/>
         <hr />
         <ul>
           {items.map((item, index) => (
@@ -47,14 +55,11 @@ class TodoList extends Component {
           ))}
         </ul>
         <input
-          placeholder='Hit a key...'
+          placeholder="Hit a key..."
           onKeyDown={this.handler}
           onKeyPress={this.handler}
           onKeyUp={this.handler}
         />
-
-        <TesteEvento />
-
       </div>
     );
   }
